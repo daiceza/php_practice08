@@ -15,12 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//09課題3 AAAController.phpをApp\Http\Controllers\XXXに作成したと仮定する
-Route::get('XXX','XXX\AAAController@bbb');
-
 Route::group(['prefix' => 'admin'],function(){
     Route::get('news/create','Admin\NewsController@add')->middleware('auth');
-    //09課題4
     Route::get('profile/create','Admin\ProfileConroller@add')->middleware('auth');
     Route::get('profile/edit','Admin\ProfileConroller@edit')->middleware('auth');
 });
