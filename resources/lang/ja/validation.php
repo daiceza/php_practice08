@@ -151,6 +151,10 @@ return [
         //課題14-5
         'name' => '名前',
         'gender' => '性別',
+        
+        'male' =>'男性',
+        'female'=>'女性',
+        
         'hobby' => '趣味',
         'introduction' => '自己紹介',
         ],

@@ -5,5 +5,7 @@ return [
     'E-Mail Address' => 'メールアドレス',
     'Password' => 'パスワード',
     'Remember Me' => 'ログイン情報を記憶する',
+    'male' => '男性',
+    'female' => '女性',
 ];
 ?>
