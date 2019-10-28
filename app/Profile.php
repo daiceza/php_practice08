@@ -15,4 +15,9 @@ class Profile extends Model
         'hobby' => 'required',
         'introduction' => 'required',
     );
+    //課題17追記
+    public function pr_histories()
+    {
+        return $this->hasMany('App\Pr_History');
+    }
 }

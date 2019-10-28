@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 use App\Profile; //16追記 App\Http\Controllers\Admin\Profile
 
+//課題17追記
+use App\Pr_History;
+use Carbon\carbon;
+
 class ProfileController extends Controller
 {
     public function add()
@@ -56,12 +60,18 @@ class ProfileController extends Controller
         
         $profile->fill($profile_form)->save();
         
+        //課題17 追記
+        $history = new Pr_History;
+        $history->profile_id=$profile->id;
+        $history->edited_at =Carbon::now();
+        $history->save();
+        
         return redirect('admin/profile/');
     }
     public function delete(Request $request)
     {
         $profile = Profile::find($request->id);
         $profile->delete();
-        return redirect('admin/news/');
+        return redirect('admin/profile/');
     }
 }

@@ -24,7 +24,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">性別</label>
                         <div class="col-md-2 form-check radio-inline"> <!---->
-                            <input type="radio" class="form-check-input" name="gender" id="male" value='男性'{{ old('gender','male') == '男性' ? 'checked' : '' }}>
+                            <input type="radio" class="form-check-input" name="gender" id="male" value='男性'{{ old('gender','male') == '男性' ? 'checked' : '' }} checked="checked">
                             <label class="form-check-label" for="male">男性</label>
                         </div>
                         <div class="col-md-2 form-check radio-inline">

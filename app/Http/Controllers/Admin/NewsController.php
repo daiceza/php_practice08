@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 
 //14追記
 use App\News;
+//17追記
+use App\History;
+use Carbon\carbon;
 
 class NewsController extends Controller
 {
@@ -70,8 +73,17 @@ class NewsController extends Controller
             $news->image_path = null;
             unset($news_form['remove']);
         }
+        
         unset($news_form['_token']);
+        
         $news->fill($news_form)->save();
+        
+        //17追記
+        $history = new History;
+        $history->news_id = $news->id;
+        $history->edited_at =Carbon::now();
+        $history->save();
+        
         return redirect('admin/news');
     }
     public function delete(Request $request)
