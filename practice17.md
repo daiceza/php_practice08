@@ -7,7 +7,7 @@ database/migrations/yyyy_mm_dd_hhmmss_create_pr_histories_table.phpを次のよ�
 ``` php
 public function up()
     {
-        Schema::create('prhistories', function(Blueprint $table) {
+        Schema::create('pr_histories', function(Blueprint $table) {
             $table->bigIncrements('id');
             //課題17追記
             $table->integer('profile_id');
@@ -25,19 +25,20 @@ Modelの雛形を作成
 ```
 php artisan make:model Pr_History
 ```
-app/PrHistory.php で Pr_History Modelを下記のように実装。
+app/Pr_History.php で Pr_History Modelを下記のように実装。
 ```php
 class Pr_History extends Model
 {
     //課題17 追記
     protected $guarded = array('id');
+    protected $table = 'pr_histories';
     public static $rules = array(
         'create_id' => 'required',
         'edited_at' => 'required',
     );
 }
 ```
-Create Modelとの関連を定義するために、app/Profile.phpへ以下の内容を追記
+Profile Modelとの関連を定義するために、app/Profile.phpへ以下の内容を追記
 ```php
 class Profile extends Model
 {
