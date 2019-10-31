@@ -66,17 +66,18 @@ class NewsController extends Controller
         $news = News::find($request->id);
         $news_form = $request->all();
         
-        if (isset($news_form['image'])) {
+        if ($request->remove == 'true') {
+            $news_form['image_path'] = null;
+        } elseif ($request->file('image')) {
             $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
             $news->image_path = Storage::disk('s3')->url($path);
-            unset($news_form['image']);
-        }elseif (isset($request->remove)) {
-            $news->image_path = null;
-            unset($news_form['remove']);
+        } else {
+            $news_form['image_path'] = $news->image_path;
         }
         
         unset($news_form['_token']);
-        
+        unset($news_form['image']);
+        unset($news_form['remove']);
         $news->fill($news_form)->save();
         
         //17追記
